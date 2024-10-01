@@ -2,17 +2,18 @@ import React, { useReducer, useEffect } from 'react';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseSummary from './components/ExpenseSummary';
 import BudgetAlert from './components/BudgetAlert';
-import ExpenseTable from './components/ExpenseTable'; // Import ExpenseTable
+import ExpenseTable from './components/ExpenseTable';
+import BudgetForm from './components/BudgetForm';
 
 // Define the initial state with expenses and budget
 const initialState = {
-  expenses: JSON.parse(localStorage.getItem('expenses')) || [], // Load from localStorage
-  budget: { 
-    food: 13000, // Example limits (in currency units)
+  expenses: JSON.parse(localStorage.getItem('expenses')) || [],
+  budget: JSON.parse(localStorage.getItem('budget')) || { 
+    food: 13000, 
     transport: 5000,
     entertainment: 2000,
     rent: 10000,
-  }
+  },
 };
 
 // Reducer function to handle actions
@@ -21,16 +22,17 @@ const reducer = (state, action) => {
     case 'ADD_EXPENSE':
       const newExpenses = [...state.expenses, action.payload];
       localStorage.setItem('expenses', JSON.stringify(newExpenses));
-      return { ...state, expenses: [...state.expenses, action.payload] };
+      return { ...state, expenses: newExpenses };
 
     case 'SET_BUDGET':
-      return { ...state, budget: { ...state.budget, ...action.payload } };
+      const updatedBudget = { ...state.budget, ...action.payload };
+      localStorage.setItem('budget', JSON.stringify(updatedBudget)); // Save updated budget to localStorage
+      return { ...state, budget: updatedBudget };
 
     case 'DELETE_EXPENSE':
-      return {
-        ...state,
-        expenses: state.expenses.filter(expense => expense.id !== action.payload),
-      };
+      const filteredExpenses = state.expenses.filter(expense => expense.id !== action.payload);
+      localStorage.setItem('expenses', JSON.stringify(filteredExpenses));
+      return { ...state, expenses: filteredExpenses };
 
     default:
       return state;
@@ -40,10 +42,15 @@ const reducer = (state, action) => {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // useEffect to save expenses to localStorage whenever they change
+  // Save expenses to localStorage when they change
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(state.expenses));
   }, [state.expenses]);
+
+  // Save budget to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('budget', JSON.stringify(state.budget));
+  }, [state.budget]);
 
   return (
     <div style={styles.container}>
@@ -68,6 +75,11 @@ const App = () => {
         {/* Section for Budget Alerts (with the bar chart) */}
         <div style={styles.section}>
           <BudgetAlert expenses={state.expenses} budget={state.budget} />
+        </div>
+
+        {/* Section for Budget Form */}
+        <div style={styles.section}>
+          <BudgetForm dispatch={dispatch} /> {/* Allow users to set their own budget */}
         </div>
       </div>
     </div>

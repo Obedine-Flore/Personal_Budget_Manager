@@ -13,7 +13,7 @@ const BudgetAlerts = ({ budget, expenses }) => {
   const ALERT_THRESHOLD = 0.8;
 
   return (
-    <div style={{ width: '100%', padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '10px' }}>
+    <div style={{ width: '95%', padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '10px' }}>
       <h2 style={{ textAlign: 'center', color: '#333', marginBottom: '20px' }}>Budget Alerts</h2>
       {categories.map((category) => {
         const spent = calculateSpent(category);

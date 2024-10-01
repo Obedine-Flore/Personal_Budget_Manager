@@ -33,7 +33,7 @@ const ExpenseForm = ({ dispatch }) => {
         backgroundColor: '#f9f9f9' 
       }}
     >
-      <h2 style={{ textAlign: 'center', color: '#333' }}>Add New Expense</h2>
+      <h2 style={{ textAlign: 'center', color: '#333' }}>New Expense</h2>
 
       <input
         type="number"
