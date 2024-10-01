@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 const ExpenseTable = ({ items, dispatch }) => { // Added dispatch as a prop
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
-  const sortedItems = React.useMemo(() => {
+  const sortedItems = useMemo(() => {
     let sortableItems = [...items];
 
     if (sortConfig.key) {
@@ -65,7 +65,7 @@ const ExpenseTable = ({ items, dispatch }) => { // Added dispatch as a prop
           >
             Amount
           </th>
-          <th style={{ backgroundColor: '#f2f2f2', padding: '10px', border: '1px solid #ccc' }}>Actions</th> {/* Actions column */}
+          <th style={{ backgroundColor: '#f2f2f2', padding: '10px', border: '1px solid #ccc' }}>Actions</th>
         </tr>
       </thead>
       <tbody>
