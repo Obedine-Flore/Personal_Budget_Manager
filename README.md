@@ -27,12 +27,15 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/yourusername/personal-budget-manager.git
 
 2. **Navigate to the project directory:**
+    ```bash
     cd personal-budget-manager
 
 3. **Install dependencies:**
+    ```bash
     npm install
 
 4. **Run the application:**
+    ```bash
     npm start
 
 ## Usage
