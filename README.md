@@ -5,6 +5,7 @@ The Personal Budget Manager is a web application designed to help users track th
 
 ## Features
 - Add and categorize expenses.
+- Sort expenses in ascending and descending order
 - Set budget limits for various categories.
 - View expense summaries and budget alerts.
 - Responsive design for both desktop and mobile devices.
@@ -56,6 +57,7 @@ The app will display alerts if your spending is nearing or exceeding budget limi
 4. **Expense Summary:**
 
 - Review your total expenses and how they compare against your set budgets.
+- Click the column head to sort expenses in ascending or descending order.
 
 ## Contributing
 Contributions are welcome! If you have suggestions for improvements or would like to contribute code, please create a pull request.
