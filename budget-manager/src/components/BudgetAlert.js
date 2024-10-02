@@ -3,9 +3,11 @@ import BudgetChart from './BudgetChart';
 
 const BudgetAlerts = ({ budget, expenses }) => {
   const calculateSpent = (category) => {
-    return expenses
+    const categorySpent = expenses
       .filter((expense) => expense.category === category)
       .reduce((total, expense) => total + expense.amount, 0);
+    console.log(`Category: ${category}, Spent: ${categorySpent}`); // Debugging log
+    return categorySpent;
   };
 
   const categories = Object.keys(budget);
@@ -50,7 +52,7 @@ const BudgetAlerts = ({ budget, expenses }) => {
       })}
 
       {/* Budget Chart with adjusted size */}
-      <div style={{ marginTop: '30px', width: '400px', height: '400px', margin: '0 auto' }}> {/* Set the chart size here */}
+      <div style={{ marginTop: '30px', width: '400px', height: '400px', margin: '0 auto' }}>
         <BudgetChart
           budgetData={{
             labels: categories,
