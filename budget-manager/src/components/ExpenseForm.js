@@ -64,7 +64,7 @@ const ExpenseForm = ({ dispatch }) => {
         type="text"
         value={expense.category}
         onChange={(e) => setExpense({ ...expense, category: e.target.value })}
-        placeholder="Category"
+        placeholder="Category in lowercase"
         required
         style={{
           padding: '10px',
