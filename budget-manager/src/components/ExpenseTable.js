@@ -38,7 +38,7 @@ const ExpenseTable = ({ items, dispatch }) => { // Added dispatch as a prop
     setSortConfig({ key, direction });
   };
 
-  // Function to handle delete
+  // This function handles deleting an expense
   const handleDelete = (id) => {
     dispatch({ type: 'DELETE_EXPENSE', payload: id });
   };

@@ -5,7 +5,7 @@ import BudgetAlert from './components/BudgetAlert';
 import ExpenseTable from './components/ExpenseTable';
 import BudgetForm from './components/BudgetForm';
 
-// Define the initial state with expenses and budget
+// Let us define the initial state with expenses and a budget
 const initialState = {
   expenses: JSON.parse(localStorage.getItem('expenses')) || [],
   budget: JSON.parse(localStorage.getItem('budget')) || { 
@@ -16,7 +16,7 @@ const initialState = {
   },
 };
 
-// Reducer function to handle actions
+// The reducer function to handle actions
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_EXPENSE':
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
 
     case 'SET_BUDGET':
       const updatedBudget = { ...state.budget, ...action.payload };
-      localStorage.setItem('budget', JSON.stringify(updatedBudget)); // Save updated budget to localStorage
+      localStorage.setItem('budget', JSON.stringify(updatedBudget)); // Local storage saves the updated budget to localStorage
       return { ...state, budget: updatedBudget };
 
     case 'DELETE_EXPENSE':
@@ -42,12 +42,12 @@ const reducer = (state, action) => {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Save expenses to localStorage when they change
+  // This section saves expenses to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(state.expenses));
   }, [state.expenses]);
 
-  // Save budget to localStorage when it changes
+  // This section saves the budget to the localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('budget', JSON.stringify(state.budget));
   }, [state.budget]);
@@ -86,10 +86,10 @@ const App = () => {
   );
 };
 
-// Basic styles for the App
+// Basic styling for the budget App
 const styles = {
   container: {
-    backgroundColor: '#f4f4f9', // Light background
+    backgroundColor: '#f4f4f9', // For a light background
     minHeight: '100vh',
     padding: '20px',
     display: 'flex',
@@ -105,14 +105,14 @@ const styles = {
   },
   content: {
     width: '100%',
-    maxWidth: '800px', // Limit the content width
+    maxWidth: '800px', // This limits the content width
     backgroundColor: '#fff',
     padding: '20px',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   },
   section: {
-    marginBottom: '30px', // Add margin between sections
+    marginBottom: '30px', // This adds a margin between sections
   },
 };
 

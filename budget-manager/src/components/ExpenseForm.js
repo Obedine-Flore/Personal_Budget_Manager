@@ -8,7 +8,7 @@ const ExpenseForm = ({ dispatch }) => {
     
     const newExpense = {
       id: Date.now(), // Using timestamp as a unique ID
-      amount: parseFloat(expense.amount), // Ensure amount is a number
+      amount: parseFloat(expense.amount), // This ensures the amount is a number
       date: expense.date,
       category: expense.category,
     };

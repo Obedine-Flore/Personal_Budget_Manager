@@ -7,7 +7,7 @@ const BudgetForm = ({ dispatch }) => {
     e.preventDefault();
     dispatch({ type: 'SET_BUDGET', payload: budget });
 
-    // Reset form fields
+    // This resets the form fields
     setBudget({ food: '', transport: '', entertainment: '', rent: '' });
   };
 

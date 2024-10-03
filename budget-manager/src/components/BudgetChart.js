@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale } from 'chart.js';
 import { BarElement } from 'chart.js';
-import ErrorBoundary from './ErrorBoundary'; // Import ErrorBoundary
+import ErrorBoundary from './ErrorBoundary'; // Imports ErrorBoundary
 
-// Register the required components
+// This line registers the required components
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 const BudgetChart = ({ budgetData }) => {
@@ -14,16 +14,16 @@ const BudgetChart = ({ budgetData }) => {
     const timeoutId = setTimeout(() => {
       const chart = chartRef.current;
       if (chart) {
-        // Do something with the chart
+        // Chart initialized. Do something with the chart
         console.log('Chart initialized successfully');
       }
     }, 100); // Delay by 100ms to ensure DOM is available
 
-    return () => clearTimeout(timeoutId); // Cleanup timeout on unmount
-  }, [budgetData]); // Run this effect whenever budgetData changes
+    return () => clearTimeout(timeoutId); // Cleans up timeout on unmount
+  }, [budgetData]); // Runs this effect whenever budgetData changes
 
   if (!budgetData) {
-    return null; // Avoid rendering if budgetData is undefined
+    return null; // To avoid rendering if budgetData is undefined
   }
 
   const data = {
@@ -37,7 +37,7 @@ const BudgetChart = ({ budgetData }) => {
   };
 
   return (
-    <ErrorBoundary> {/* Wrap the chart component in ErrorBoundary */}
+    <ErrorBoundary> {/* Let's wrap the chart component in ErrorBoundary */}
       <div>
         <Pie ref={chartRef} data={data} />
       </div>
